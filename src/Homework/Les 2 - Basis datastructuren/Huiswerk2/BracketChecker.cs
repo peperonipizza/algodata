@@ -18,7 +18,27 @@ namespace AD
         /// Returns False otherwise.</returns>
         public static bool CheckBrackets(string s)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            MyStack<char> stack = new MyStack<char>();
+            foreach(char c in s)
+            {
+                if (c == '(')
+                {
+                    count++; 
+                    stack.Push(c);
+                }
+                if (c == ')')
+                {
+                    count--;
+                    if (stack.IsEmpty())
+                        return false;
+                    stack.Pop(); 
+                }
+            }
+            if (count < 0 || count > 0)
+                return false;
+            else
+                return true;
         }
 
 
@@ -37,7 +57,52 @@ namespace AD
         /// Returns False otherwise.</returns>
         public static bool CheckBrackets2(string s)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            MyStack<char> stack1 = new MyStack<char>();
+            MyStack<char> stack2 = new MyStack<char>();
+            MyStack<char> stack3 = new MyStack<char>();
+            foreach (char c in s)
+            {
+                if (c == '(')
+                {
+                    count++;
+                    stack1.Push(c);
+                }
+                if (c == ')')
+                {
+                    count--;
+                    if (stack1.IsEmpty())
+                        return false;
+                    stack1.Pop();
+                }
+                if (c == '{')
+                {
+                    count++;
+                    stack2.Push(c);
+                }
+                if (c == '}')
+                {
+                    count--;
+                    if (stack2.IsEmpty())
+                        return false;
+                    stack2.Pop();
+                }
+                if (c == '[')
+                {
+                    count++;
+                    stack3.Push(c);
+                }
+                if (c == ']')
+                {
+                    count--;
+                    if (stack3.IsEmpty())
+                        return false;
+                    stack3.Pop();
+                }
+            }
+            if (count < 0 || count > 0)
+                return false;
+            else return true;
         }
 
     }

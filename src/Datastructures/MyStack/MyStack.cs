@@ -2,24 +2,35 @@ namespace AD
 {
     public partial class MyStack<T> : IMyStack<T>
     {
+        private T[] data;
+        int top, defaultcap = 10;
+        public MyStack()
+        {
+            data = new T[defaultcap];
+            top = -1;
+        }
         public bool IsEmpty()
         {
-            throw new System.NotImplementedException();
+            return top == -1;
         }
 
         public T Pop()
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+                throw new MyStackEmptyException();
+            return data[top--];
         }
 
-        public void Push(T data)
+        public void Push(T d)
         {
-            throw new System.NotImplementedException();
+            data[++top] = d;
         }
 
         public T Top()
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+                throw new MyStackEmptyException();
+            return data[top];
         }
     }
 }

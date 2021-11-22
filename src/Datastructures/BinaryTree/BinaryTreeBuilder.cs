@@ -16,14 +16,23 @@ namespace AD
         //         5
         //       /   \
         //     2       6
-        //    / \
-        //   8   7
-        //      /
-        //     1
+        //    / \    /  \
+        //   8   7  9    10
+        //  
         //
         public static IBinaryTree<int> CreateBinaryTreeInt()
         {
-            throw new System.NotImplementedException();
+            BinaryTree<int> leaf1 = new BinaryTree<int>(8);
+            BinaryTree<int> leaf2 = new BinaryTree<int>(7);
+            BinaryTree<int> leaf3 = new BinaryTree<int>(9);
+            BinaryTree<int> leaf4 = new BinaryTree<int>(10);
+            BinaryTree<int> leftroot = new BinaryTree<int>();
+            BinaryTree<int> rightroot = new BinaryTree<int>();
+            BinaryTree<int> root = new BinaryTree<int>();
+            leftroot.Merge(2, leaf1, leaf2);
+            rightroot.Merge(6, leaf3, leaf4);
+            root.Merge(5, leftroot, rightroot);
+            return root;
         }
 
         //

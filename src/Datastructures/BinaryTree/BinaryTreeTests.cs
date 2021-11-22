@@ -89,7 +89,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            int expected = 6;
+            int expected = 7;
 
             // Act
             int actual = tree.Size();
@@ -128,7 +128,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            int expected = 3;
+            int expected = 2;
 
             // Act
             int actual = tree.Height();
@@ -234,7 +234,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            string expected = "[ 5 [ 2 [ 8 NIL NIL ] [ 7 [ 1 NIL NIL ] NIL ] ] [ 6 NIL NIL ] ]";
+            string expected = "[ 5 [ 2 [ 8 NIL NIL ] [ 7 NIL NIL ] ] [ 6 [ 9 NIL NIL ] [ 10 NIL NIL ] ] ]";
 
             // Act
             string actual = tree.ToPrefixString();
@@ -273,7 +273,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            string expected = "[ [ [ NIL 8 NIL ] 2 [ [ NIL 1 NIL ] 7 NIL ] ] 5 [ NIL 6 NIL ] ]";
+            string expected = "[ [ [ NIL 8 NIL ] 2 [ NIL 7 NIL ] ] 5 [ [ NIL 9 NIL ] 6 [ NIL 10 NIL ] ] ]";
 
             // Act
             string actual = tree.ToInfixString();
@@ -312,7 +312,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            string expected = "[ [ [ NIL NIL 8 ] [ [ NIL NIL 1 ] NIL 7 ] 2 ] [ NIL NIL 6 ] 5 ]";
+            string expected = "[ [ [ NIL NIL 8 ] [ NIL NIL 7 ] 2 ] [ [ NIL NIL 9 ] [ NIL NIL 10 ] 6 ] 5 ]";
 
             // Act
             string actual = tree.ToPostfixString();

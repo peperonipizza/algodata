@@ -1,4 +1,6 @@
-﻿namespace AD
+﻿using AD.PracTentamen2013Opgave;
+
+namespace AD
 {
     class Program
     {
@@ -33,6 +35,11 @@
                 msort.RunWithTimer(num);
                 ssort.RunWithTimer(num);
             }
+
+            RecursieLetters a = new RecursieLetters();
+            System.Console.WriteLine(a.printletter(3));
+            System.Console.WriteLine(a.printletter2(3,5));
+            System.Console.WriteLine(a.printletter2(2, 0));
         }
     }
 }

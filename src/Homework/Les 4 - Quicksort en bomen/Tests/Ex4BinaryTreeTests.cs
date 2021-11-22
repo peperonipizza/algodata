@@ -24,7 +24,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            int expected = 3;
+            int expected = 4;
 
             // Act
             int actual = tree.NumberOfLeaves();
@@ -63,7 +63,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            int expected = 1;
+            int expected = 0;
 
             // Act
             int actual = tree.NumberOfNodesWithOneChild();
@@ -102,7 +102,7 @@ namespace AD
         {
             // Arrange
             IBinaryTree<int> tree = DSBuilder.CreateBinaryTreeInt();
-            int expected = 2;
+            int expected = 3;
 
             // Act
             int actual = tree.NumberOfNodesWithTwoChildren();

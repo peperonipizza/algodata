@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace AD
 
         public Graph()
         {
-            throw new System.NotImplementedException();
+            vertexMap = new Dictionary<string, Vertex>();
         }
 
 
@@ -32,7 +33,8 @@ namespace AD
         /// <param name="name">The name of the new vertex</param>
         public void AddVertex(string name)
         {
-            throw new System.NotImplementedException();
+            if (!vertexMap.ContainsKey(name))
+                vertexMap.Add(name, new Vertex(name));
         }
 
 
@@ -44,7 +46,14 @@ namespace AD
         /// <returns>The vertex withe the given name</returns>
         public Vertex GetVertex(string name)
         {
-            throw new System.NotImplementedException();
+            if (vertexMap.ContainsKey(name))
+                return vertexMap.GetValueOrDefault(name);
+            else
+            {
+                Vertex v = new Vertex(name);
+                vertexMap.Add(name, v);
+                return new Vertex(name);
+            }
         }
 
 
@@ -58,7 +67,9 @@ namespace AD
         /// <param name="cost">cost of the edge</param>
         public void AddEdge(string source, string dest, double cost = 1)
         {
-            throw new System.NotImplementedException();
+            Vertex v1 = GetVertex(source);
+            Vertex v2 = GetVertex(dest);
+            v1.adj.AddLast(new Edge(v2, cost));
         }
 
 
@@ -68,7 +79,7 @@ namespace AD
         /// </summary>
         public void ClearAll()
         {
-            throw new System.NotImplementedException();
+            vertexMap.Clear();
         }
 
         /// <summary>
@@ -77,7 +88,30 @@ namespace AD
         /// <param name="name">The name of the starting vertex</param>
         public void Unweighted(string name)
         {
-            throw new System.NotImplementedException();
+            ClearAll();
+            Vertex start;
+            if (vertexMap.ContainsKey(name))
+                start = vertexMap.GetValueOrDefault(name);
+            else
+                start = new Vertex(name);
+            Queue<Vertex> queue = new Queue<Vertex>();
+            queue.Enqueue(start);
+            start.distance = 0;
+
+            while (!(queue.Count() == 0))
+            {
+                Vertex v = queue.Dequeue();
+                foreach (Edge e in v.adj)
+                {
+                    Vertex w = e.dest;
+                    if (w.distance == INFINITY)
+                    {
+                        w.distance = v.distance + 1;
+                        w.prev = v;
+                        queue.Enqueue(w);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -86,7 +120,34 @@ namespace AD
         /// <param name="name">The name of the starting vertex</param>
         public void Dijkstra(string name)
         {
-            throw new System.NotImplementedException();
+            PriorityQueue<Edge> prioqueue = new PriorityQueue<Edge>();
+            Vertex start = vertexMap.GetValueOrDefault(name);
+            if (start == null)
+                throw new Exception();
+            ClearAll();
+            prioqueue.Add(new Edge(start, 0));
+            start.distance = 0;
+            int nodesSeen = 0;
+            while(!(prioqueue.Size() > 0) && nodesSeen < vertexMap.Count())
+            {
+                Edge vrec = prioqueue.Remove();
+                Vertex v = vrec.dest;
+                if (v.known)
+                    continue;
+                v.known = true;
+                nodesSeen++;
+                foreach (Edge edge in v.adj)
+                {
+                    Vertex w = edge.dest;
+                    double cvw = edge.cost;
+                    if (w.distance > v.distance + cvw)
+                    {
+                        w.distance = v.distance + cvw;
+                        w.prev = v;
+                        prioqueue.Add(new Edge(w, w.distance));
+                    }
+                }
+            }
         }
 
         //----------------------------------------------------------------------
@@ -101,7 +162,12 @@ namespace AD
         /// <returns>The string representation of this Graph instance</returns>
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            string s = "";
+            foreach (string key in vertexMap.Keys.OrderBy(x => x))
+            {
+                s+= vertexMap.GetValueOrDefault(key).ToString();
+            }
+            return s;
         }
 
 
@@ -113,7 +179,8 @@ namespace AD
 
         public bool IsConnected()
         {
-            throw new System.NotImplementedException();
+            return true;
+            //throw new System.NotImplementedException();
         }
 
     }

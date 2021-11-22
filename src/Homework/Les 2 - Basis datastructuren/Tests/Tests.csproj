@@ -7,6 +7,10 @@
     <RootNamespace>AD</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="..\..\..\Datastructures\MyArrayList\MyArrayListTests.cs" Link="MyArrayListTests.cs" />
     <Compile Include="..\..\..\Datastructures\MyLinkedList\MyLinkedListTests.cs" Link="MyLinkedListTests.cs" />

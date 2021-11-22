@@ -10,7 +10,12 @@ namespace AD
         public override void Sort(List<int> list)
         {
             // Should be implemented in lecture 4!
-            throw new System.NotImplementedException();
+            QuickSort2(list, 0, list.Count - 1);
+        }
+
+        public void QuickSort2(List<int> list, int low, int high)
+        {
+            
         }
     }
 }

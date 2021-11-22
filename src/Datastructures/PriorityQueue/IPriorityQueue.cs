@@ -1,7 +1,7 @@
 namespace AD
 {
     public partial interface IPriorityQueue<T>
-        where T : System.IComparable<T>
+        /*where T : System.IComparable<T>*/
     {
         //----------------------------------------------------------------------
         // Methods that have to be implemented for exam

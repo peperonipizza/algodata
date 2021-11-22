@@ -13,7 +13,15 @@
         public static long FibonacciRecursive(int n)
         {
             calls = 0;
-            return FibonacciRecursiveInternal(n);
+            if (n <= 1)
+            {
+                return n;
+            }
+            else
+            {
+                return FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2);
+            }
+
         }
 
         private static long FibonacciIterativeInternal(int n)
@@ -24,7 +32,15 @@
         public static long FibonacciIterative(int n)
         {
             calls = 0;
-            return FibonacciIterativeInternal(n);
+            int a = 0;
+            int b = 1;
+            for (int i = 0; i < n; i++)
+            {
+                int temp = a;
+                a = b;
+                b = temp + b;
+            }
+            return a;
         }
 
         public static void Run()

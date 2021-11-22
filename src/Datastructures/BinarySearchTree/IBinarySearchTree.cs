@@ -1,3 +1,5 @@
+using System;
+
 namespace AD
 {
     public partial interface IBinarySearchTree<T> : IBinaryTree<T>
