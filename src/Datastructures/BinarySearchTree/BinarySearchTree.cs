@@ -80,14 +80,17 @@ namespace AD
         {
             if (t == null)
                 throw new BinarySearchTreeElementNotFoundException();
+
             if (x.CompareTo(t.data) < 0)
             {
                 t.left = Remove(x, t.left);
             }
+
             if (x.CompareTo(t.data) > 0)
             {
                 t.right = Remove(x, t.right);
             }
+
             else if (t.left != null && t.right != null)
             {
                 t.data = FindMin(t.right).data;

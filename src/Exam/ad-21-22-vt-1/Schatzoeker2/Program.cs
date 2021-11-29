@@ -7,7 +7,13 @@ namespace AD
         public static int ZoekSchat(char[,] arr, int row, int col)
         {
             // Implement here
-            throw new NotImplementedException();
+            char c = arr[row, col];
+            if (c == 'X') return 0;
+            if (c == '@')
+            {
+                return ZoekSchat(arr, row + 1, col) + 1;
+            }
+            return ZoekSchat(arr, row, (col + 1) % 5) + 1;
         }
 
         static void Main(string[] args)
